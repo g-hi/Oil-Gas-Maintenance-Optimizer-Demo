@@ -10,13 +10,27 @@ The optimizer assigns maintenance tasks to qualified technicians while respectin
 
 The project is inspired by Saudi oil-and-gas operations. Since real operational maintenance work orders, technician rosters, and shutdown windows are typically confidential, this project uses realistic simulated maintenance scheduling data.
 
+## Live Demo
+
+* **Live Dashboard:** https://g-hi-oil-gas-maintenance-optimizer-demo-guistreamlit-app-cazjls.streamlit.app/
+* **API Documentation:** https://oil-gas-maintenance-optimizer-demo.onrender.com/docs
+* **Backend Health Check:** https://oil-gas-maintenance-optimizer-demo.onrender.com/health
+* **GitHub Repository:** https://github.com/g-hi/Oil-Gas-Maintenance-Optimizer-Demo
+
+> Note: The dashboard is best viewed on a laptop or desktop because it includes schedule tables and Gantt chart visualizations.
+
 ## Key Features
 
 * Google OR-Tools CP-SAT optimization model
 * FastAPI backend with Swagger documentation
 * Streamlit dashboard for interactive scenario testing
+* Live backend deployed on Render
+* Live dashboard deployed on Streamlit Community Cloud
 * Dockerized backend deployment
 * Scenario-based optimization
+* Scenario comparison dashboard
+* Business summary for optimization results
+* Gantt chart visualization
 * Validation and feasibility diagnostics
 * Technician workload analysis
 * Unit tests with Pytest
@@ -32,7 +46,10 @@ The project is inspired by Saudi oil-and-gas operations. Since real operational 
 * Pytest
 * Uvicorn
 * Streamlit
+* Plotly
 * Docker
+* Render
+* Streamlit Community Cloud
 
 ## Project Structure
 
@@ -82,6 +99,7 @@ oil-gas-maintenance-optimizer/
 ├── Dockerfile
 ├── .dockerignore
 ├── .gitignore
+├── runtime.txt
 ├── main.py
 ├── requirements.txt
 └── README.md
@@ -226,11 +244,14 @@ The dashboard supports:
 * Default maintenance optimization
 * Scenario-based optimization
 * Scenario selection
+* Scenario comparison
 * Solver status
 * Objective value
 * Runtime
 * Scheduled task count
+* Business explanation summary
 * Optimized schedule table
+* Gantt chart visualization
 * Technician workload table
 * Workload bar chart
 * Diagnostics summary
@@ -281,21 +302,39 @@ Remove the container:
 docker rm oil-gas-maintenance-api-container
 ```
 
-## Using Streamlit with Docker Backend
+## Cloud Deployment
 
-If the Docker backend is running on port `8001`, update the API URL in `gui/streamlit_app.py`:
+The backend is deployed on **Render**:
+
+```text
+https://oil-gas-maintenance-optimizer-demo.onrender.com
+```
+
+API documentation:
+
+```text
+https://oil-gas-maintenance-optimizer-demo.onrender.com/docs
+```
+
+The dashboard is deployed on **Streamlit Community Cloud**:
+
+```text
+https://g-hi-oil-gas-maintenance-optimizer-demo-guistreamlit-app-cazjls.streamlit.app/
+```
+
+## Using Streamlit with Deployed Backend
+
+The deployed Streamlit dashboard calls the Render backend using:
+
+```python
+API_URL = "https://oil-gas-maintenance-optimizer-demo.onrender.com"
+```
+
+For local Docker testing, this can be changed to:
 
 ```python
 API_URL = "http://127.0.0.1:8001"
 ```
-
-Then run:
-
-```bash
-streamlit run gui/streamlit_app.py
-```
-
-This allows the Streamlit GUI to call the Dockerized FastAPI backend.
 
 ## Sample Optimization Output
 
@@ -386,11 +425,16 @@ Completed:
 * CP-SAT scheduling model
 * FastAPI API layer
 * Scenario-based optimization
+* Scenario comparison
 * Streamlit dashboard
+* Business summary generation
+* Gantt chart visualization
 * Diagnostics dashboard
 * Dockerized FastAPI backend
 * Local Docker backend tested successfully
-* Streamlit connected to Docker backend
+* Backend deployed on Render
+* Streamlit dashboard deployed on Streamlit Community Cloud
+* Streamlit connected to deployed Render backend
 
 ## Future Improvements
 
@@ -398,10 +442,9 @@ Completed:
 * Add overtime penalties
 * Add spare parts availability
 * Add technician cost optimization
-* Add scenario comparison dashboard
 * Add database storage
 * Add authentication
-* Add cloud deployment
 * Add CI/CD with GitHub Actions
-* Add Gantt chart visualization
 * Add REST API request body for custom task uploads
+* Add custom CSV upload for tasks and technicians
+* Add role-based planner dashboard
