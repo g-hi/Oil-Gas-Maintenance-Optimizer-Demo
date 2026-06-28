@@ -1,0 +1,7 @@
+{
+  "scenario_name": "normal_operations",
+  "description": "Baseline planned maintenance schedule with all technicians available.",
+  "technician_status": {},
+  "extra_tasks": [],
+  "task_overrides": {}
+}

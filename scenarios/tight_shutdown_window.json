@@ -1,0 +1,16 @@
+{
+  "scenario_name": "tight_shutdown_window",
+  "description": "Pipeline and compressor tasks have tighter maintenance windows.",
+  "technician_status": {},
+  "extra_tasks": [],
+  "task_overrides": {
+    "M002": {
+      "earliest_start": 9,
+      "latest_finish": 13
+    },
+    "M005": {
+      "earliest_start": 8,
+      "latest_finish": 13
+    }
+  }
+}

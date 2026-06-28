@@ -1,0 +1,14 @@
+{
+  "scenario_name": "normal_operations",
+  "time_horizon_start": 8,
+  "time_horizon_end": 18,
+  "time_unit": "hour",
+  "solver": "CP-SAT",
+  "time_limit_seconds": 10,
+  "objective_weights": {
+    "priority": 100,
+    "overtime": 20,
+    "workload_balance": 5
+  },
+  "data_note": "Maintenance tasks, technician rosters, and operational windows are simulated for an oil-and-gas-inspired optimization project."
+}

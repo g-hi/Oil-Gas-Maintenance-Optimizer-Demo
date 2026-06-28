@@ -1,0 +1,7 @@
+tech_id,tech_name,skills,shift_start,shift_end,max_hours,base_location
+T001,Technician Mechanical 1,mechanical;pump;separator,8,16,8,Abqaiq
+T002,Technician Compressor 1,mechanical;compressor;gas,8,16,8,Hawiyah
+T003,Technician Electrical 1,electrical;generator;control_panel,8,16,8,Hawiyah
+T004,Technician Instrumentation 1,instrumentation;control_valve;sensor,10,18,8,Abqaiq
+T005,Technician Pipeline 1,pipeline;inspection;welding,8,16,8,East-West Pipeline
+T006,Technician Refinery 1,mechanical;heat_exchanger;desalter,9,17,8,Ras Tanura

@@ -1,0 +1,11 @@
+task_id,asset_id,task_name,required_skill,duration_hours,priority,earliest_start,latest_finish
+M001,A001,Pump vibration inspection,pump,3,5,8,14
+M002,A002,Compressor performance check,compressor,4,5,9,17
+M003,A003,Separator pressure inspection,separator,2,4,8,15
+M004,A004,Heat exchanger cleaning,heat_exchanger,3,4,10,17
+M005,A005,Pipeline corrosion inspection,pipeline,4,5,8,16
+M006,A006,Storage tank valve inspection,mechanical,2,3,8,16
+M007,A007,Control valve calibration,control_valve,2,3,10,18
+M008,A008,Emergency generator test,generator,2,4,8,14
+M009,A009,Wellhead safety inspection,inspection,3,5,9,16
+M010,A010,Desalter unit inspection,desalter,3,4,9,17

@@ -1,0 +1,9 @@
+{
+  "scenario_name": "technician_unavailable",
+  "description": "Compressor technician T002 is unavailable, forcing reassignment or infeasibility.",
+  "technician_status": {
+    "T002": "unavailable"
+  },
+  "extra_tasks": [],
+  "task_overrides": {}
+}

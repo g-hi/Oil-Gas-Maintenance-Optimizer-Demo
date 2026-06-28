@@ -1,0 +1,11 @@
+asset_id,asset_name,asset_type,location,operation_area,criticality
+A001,Crude Transfer Pump,Pump,Abqaiq,Processing,5
+A002,Gas Compression Unit,Compressor,Hawiyah,Gas Plant,5
+A003,Three Phase Separator,Separator,Uthmaniyah,Upstream,4
+A004,Heat Exchanger Unit,Heat Exchanger,Ras Tanura,Refinery,4
+A005,Pipeline Section PS-12,Pipeline,East-West Pipeline,Pipeline Operations,5
+A006,Storage Tank ST-07,Storage Tank,Ras Tanura,Terminal,3
+A007,Control Valve CV-22,Control Valve,Abqaiq,Processing,3
+A008,Emergency Generator EG-03,Generator,Hawiyah,Utilities,4
+A009,Wellhead WH-18,Wellhead,Ghawar,Upstream,5
+A010,Desalter Unit DS-02,Desalter,Ras Tanura,Refinery,4

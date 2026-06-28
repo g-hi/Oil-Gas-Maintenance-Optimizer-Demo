@@ -1,0 +1,18 @@
+{
+  "scenario_name": "emergency_maintenance",
+  "description": "Emergency high-priority compressor maintenance added to the schedule.",
+  "technician_status": {},
+  "extra_tasks": [
+    {
+      "task_id": "M011",
+      "asset_id": "A002",
+      "task_name": "Emergency compressor vibration alarm inspection",
+      "required_skill": "compressor",
+      "duration_hours": 2,
+      "priority": 5,
+      "earliest_start": 8,
+      "latest_finish": 13
+    }
+  ],
+  "task_overrides": {}
+}
