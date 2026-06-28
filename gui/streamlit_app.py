@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.express as px
 
 
-API_URL = "http://127.0.0.1:8001"
+API_URL = "https://oil-gas-maintenance-optimizer-demo.onrender.com"
 
 
 st.set_page_config(
