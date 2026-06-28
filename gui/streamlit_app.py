@@ -259,11 +259,14 @@ def compare_all_scenarios(scenarios):
         )
 
 
-st.title("Oil & Gas Maintenance Scheduling Optimizer")
+st.title("Oil & Gas Maintenance Scheduling Optimizer — Technical Proof of Concept")
 
 st.write(
-    "A production-style optimization dashboard for scheduling oil-and-gas "
-    "maintenance tasks using Google OR-Tools CP-SAT, FastAPI, Streamlit, and Docker."
+    "A technical proof-of-concept demonstrating how constraint optimization "
+    "can support oil-and-gas maintenance planning. The dashboard uses Google "
+    "OR-Tools CP-SAT to assign maintenance tasks to qualified technicians while "
+    "respecting skills, shifts, maintenance windows, priorities, and operational "
+    "scenarios."
 )
 
 api_ok = check_api_health()
