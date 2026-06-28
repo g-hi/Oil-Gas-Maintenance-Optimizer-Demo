@@ -259,7 +259,7 @@ def compare_all_scenarios(scenarios):
         )
 
 
-st.title("Oil & Gas Maintenance Scheduling Optimizer — Technical Proof of Concept")
+st.subheader("Oil & Gas Maintenance Scheduling Optimizer — Technical Proof of Concept")
 
 st.write(
     "A technical proof-of-concept demonstrating how constraint optimization "
@@ -272,12 +272,12 @@ st.write(
 api_ok = check_api_health()
 
 with st.sidebar:
-    st.header("Control Panel")
+    st.header("Optimization Console")
 
     if api_ok:
-        st.success("FastAPI backend connected")
+        st.success("Backend Connected")
     else:
-        st.error("FastAPI backend not reachable")
+        st.error("Backend not Reachable")
 
     st.caption(f"API URL: {API_URL}")
 
