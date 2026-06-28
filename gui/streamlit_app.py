@@ -259,8 +259,8 @@ def compare_all_scenarios(scenarios):
         )
 
 
-st.subheader("Oil & Gas Maintenance Scheduling Optimizer"
-                 "Technical Proof of Concept"
+st.subheader("Oil & Gas Maintenance Scheduling Optimizer  "
+                 " |  Technical Proof of Concept"
             )
 
 st.write(
@@ -281,7 +281,7 @@ with st.sidebar:
     else:
         st.error("Backend not Reachable")
 
-    st.caption(f"API URL: {API_URL}")
+   
 
     scenarios = get_scenarios()
 
