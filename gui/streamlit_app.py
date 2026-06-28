@@ -6,6 +6,13 @@ import plotly.express as px
 
 API_URL = "https://oil-gas-maintenance-optimizer-demo.onrender.com"
 
+SCENARIO_LABELS = {
+    "normal_operations": "Normal Operations",
+    "emergency_maintenance": "Emergency Maintenance",
+    "technician_unavailable": "Technician Unavailable",
+    "tight_shutdown_window": "Tight Shutdown Window",
+}
+
 
 st.set_page_config(
     page_title="Oil & Gas Maintenance Optimizer",
@@ -89,6 +96,7 @@ def get_scenarios():
             return response.json().get("available_scenarios", [])
     except requests.exceptions.ConnectionError:
         return []
+
     return []
 
 
@@ -103,6 +111,7 @@ def check_api_health():
 def run_optimization(run_mode, selected_scenario):
     if run_mode == "Scenario-based optimization" and selected_scenario:
         return requests.post(f"{API_URL}/optimize-scenario/{selected_scenario}")
+
     return requests.post(f"{API_URL}/optimize-maintenance")
 
 
@@ -234,7 +243,10 @@ def show_diagnostics(result, diagnostics, scenario_name, scenario_description):
     scenario_df = pd.DataFrame(
         [
             {
-                "Scenario Name": scenario_name or "default",
+                "Scenario Name": SCENARIO_LABELS.get(
+                    scenario_name,
+                    scenario_name or "Default",
+                ),
                 "Scenario Description": scenario_description
                 or "Default maintenance optimization",
                 "Solver Status": result.get("status"),
@@ -268,7 +280,10 @@ def compare_all_scenarios(scenarios):
 
                     comparison_rows.append(
                         {
-                            "Scenario": scenario,
+                            "Scenario": SCENARIO_LABELS.get(
+                                scenario,
+                                scenario.replace("_", " ").title(),
+                            ),
                             "Status": result.get("status"),
                             "Objective Value": result.get("objective_value"),
                             "Runtime Seconds": result.get("runtime_seconds"),
@@ -284,7 +299,10 @@ def compare_all_scenarios(scenarios):
                 else:
                     comparison_rows.append(
                         {
-                            "Scenario": scenario,
+                            "Scenario": SCENARIO_LABELS.get(
+                                scenario,
+                                scenario.replace("_", " ").title(),
+                            ),
                             "Status": "API_ERROR",
                             "Objective Value": None,
                             "Runtime Seconds": None,
@@ -349,9 +367,8 @@ st.markdown(
     </div>
 
     <div class="value-box">
-        <b>Business Use Case:</b> This dashboard demonstrates how optimization can support
-        maintenance planning, resource allocation, technician workload balancing, and
-        scenario analysis in energy operations.
+        <b>Viewing Note:</b> For the best experience, please open this dashboard on a laptop
+        or desktop. The schedule tables and Gantt chart are optimized for wider screens.
     </div>
     """,
     unsafe_allow_html=True,
@@ -379,7 +396,14 @@ with st.sidebar:
 
     if run_mode == "Scenario-based optimization":
         if scenarios:
-            selected_scenario = st.selectbox("Scenario Selection", scenarios)
+            selected_scenario = st.selectbox(
+                "Scenario Selection",
+                scenarios,
+                format_func=lambda scenario: SCENARIO_LABELS.get(
+                    scenario,
+                    scenario.replace("_", " ").title(),
+                ),
+            )
         else:
             st.warning("No scenarios available.")
 
@@ -410,6 +434,10 @@ if run_button:
 
     scenario_name = diagnostics.get("scenario_name")
     scenario_description = diagnostics.get("scenario_description")
+    scenario_display_name = SCENARIO_LABELS.get(
+        scenario_name,
+        scenario_name or "Default Maintenance Optimization",
+    )
 
     st.subheader("Solver Summary")
 
@@ -422,7 +450,7 @@ if run_button:
 
     if scenario_name:
         st.subheader("Scenario Details")
-        st.write(f"**Scenario:** {scenario_name}")
+        st.write(f"**Scenario:** {scenario_display_name}")
         st.write(f"**Description:** {scenario_description}")
 
     if result.get("errors"):
