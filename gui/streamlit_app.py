@@ -263,8 +263,8 @@ st.subheader("Oil & Gas Maintenance Scheduling Optimizer — Technical Proof of 
 
 st.write(
     "A technical proof-of-concept demonstrating how constraint optimization "
-    "can support oil-and-gas maintenance planning. The dashboard uses Google "
-    "OR-Tools CP-SAT to assign maintenance tasks to qualified technicians while "
+    "can support oil-and-gas maintenance planning. "
+    "Google OR-Tools was used to assign maintenance tasks to qualified technicians while "
     "respecting skills, shifts, maintenance windows, priorities, and operational "
     "scenarios."
 )
@@ -272,10 +272,10 @@ st.write(
 api_ok = check_api_health()
 
 with st.sidebar:
-    st.header("Optimization Console")
+    st.title("Optimization Console")
 
     if api_ok:
-        st.success("Backend Connected")
+        st.success("Connected")
     else:
         st.error("Backend not Reachable")
 
@@ -285,7 +285,7 @@ with st.sidebar:
 
     run_mode = st.radio(
         "Optimization Mode",
-        ["Default maintenance optimization", "Scenario-based optimization"],
+        ["Scenario-based optimization","Default maintenance optimization"],
     )
 
     selected_scenario = None
