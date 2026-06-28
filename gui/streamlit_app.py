@@ -259,7 +259,9 @@ def compare_all_scenarios(scenarios):
         )
 
 
-st.subheader("Oil & Gas Maintenance Scheduling Optimizer — Technical Proof of Concept")
+st.subheader("Oil & Gas Maintenance Scheduling Optimizer"
+                 "Technical Proof of Concept"
+            )
 
 st.write(
     "A technical proof-of-concept demonstrating how constraint optimization "
