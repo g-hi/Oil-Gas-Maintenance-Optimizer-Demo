@@ -13,6 +13,75 @@ st.set_page_config(
 )
 
 
+st.markdown(
+    """
+    <style>
+    .block-container {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    section[data-testid="stSidebar"] {
+        background-color: #F4F7FA;
+    }
+
+    div[data-testid="stMetric"] {
+        background-color: #F9FAFB;
+        padding: 14px;
+        border-radius: 12px;
+        border: 1px solid #E5E7EB;
+    }
+
+    .main-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 8px;
+    }
+
+    .energy-icon {
+        font-size: 46px;
+        background-color: #E8F4F8;
+        padding: 12px 16px;
+        border-radius: 16px;
+        border: 1px solid #CDE7F0;
+    }
+
+    .main-title {
+        font-size: 34px;
+        font-weight: 750;
+        margin-bottom: 0px;
+        color: #1F2937;
+    }
+
+    .subtitle {
+        font-size: 19px;
+        font-weight: 500;
+        color: #2E86AB;
+        margin-top: 2px;
+    }
+
+    .caption-text {
+        font-size: 17px;
+        line-height: 1.6;
+        color: #374151;
+        margin-top: 18px;
+        margin-bottom: 20px;
+    }
+
+    .value-box {
+        background-color: #EEF7F2;
+        padding: 16px;
+        border-radius: 12px;
+        border-left: 5px solid #2E8B57;
+        margin-bottom: 20px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+
 def get_scenarios():
     try:
         response = requests.get(f"{API_URL}/scenarios")
@@ -154,7 +223,10 @@ def show_diagnostics(result, diagnostics, scenario_name, scenario_description):
 
     diag_col1.metric("Total Tasks", diagnostics.get("num_tasks", 0))
     diag_col2.metric("Technicians", diagnostics.get("num_technicians", 0))
-    diag_col3.metric("Decision Variables", diagnostics.get("num_decision_variables", 0))
+    diag_col3.metric(
+        "Decision Variables",
+        diagnostics.get("num_decision_variables", 0),
+    )
     diag_col4.metric("Time Limit (sec)", diagnostics.get("time_limit_seconds", 0))
 
     st.subheader("Scenario Diagnostics")
@@ -259,47 +331,60 @@ def compare_all_scenarios(scenarios):
         )
 
 
-st.subheader("Oil & Gas Maintenance Scheduling Optimizer  "
-                 " |  Technical Proof of Concept"
-            )
+st.markdown(
+    """
+    <div class="main-header">
+        <div class="energy-icon">⛽</div>
+        <div>
+            <div class="main-title">Oil & Gas Maintenance Scheduling Optimizer</div>
+            <div class="subtitle">Technical Proof of Concept</div>
+        </div>
+    </div>
 
-st.write(
-    "A technical proof-of-concept demonstrating how constraint optimization "
-    "can support oil-and-gas maintenance planning. "
-    "Google OR-Tools was used to assign maintenance tasks to qualified technicians while "
-    "respecting skills, shifts, maintenance windows, priorities, and operational "
-    "scenarios."
+    <div class="caption-text">
+        A technical proof-of-concept demonstrating how constraint optimization can support
+        oil-and-gas maintenance planning. Google OR-Tools CP-SAT is used to assign
+        maintenance tasks to qualified technicians while respecting skills, shifts,
+        maintenance windows, priorities, and operational scenarios.
+    </div>
+
+    <div class="value-box">
+        <b>Business Use Case:</b> This dashboard demonstrates how optimization can support
+        maintenance planning, resource allocation, technician workload balancing, and
+        scenario analysis in energy operations.
+    </div>
+    """,
+    unsafe_allow_html=True,
 )
+
 
 api_ok = check_api_health()
 
 with st.sidebar:
-    st.title("Optimization Console")
+    st.header("Optimization Console")
 
     if api_ok:
-        st.success("Connected")
+        st.success("System Status: Connected")
     else:
-        st.error("Backend not Reachable")
-
-   
+        st.error("System Status: Backend Not Reachable")
 
     scenarios = get_scenarios()
 
     run_mode = st.radio(
         "Optimization Mode",
-        ["Scenario-based optimization","Default maintenance optimization"],
+        ["Scenario-based optimization", "Default maintenance optimization"],
     )
 
     selected_scenario = None
 
     if run_mode == "Scenario-based optimization":
         if scenarios:
-            selected_scenario = st.selectbox("Select Scenario", scenarios)
+            selected_scenario = st.selectbox("Scenario Selection", scenarios)
         else:
             st.warning("No scenarios available.")
 
     run_button = st.button("Run Optimization", use_container_width=True)
-    compare_button = st.button("Compare All Scenarios", use_container_width=True)
+    compare_button = st.button("Compare Scenarios", use_container_width=True)
 
 
 if not api_ok:
@@ -368,5 +453,6 @@ if run_button:
 
 if not run_button and not compare_button:
     st.info(
-        "Use the control panel on the left to run an optimization scenario or compare all scenarios."
+        "Use the Optimization Console on the left to run a maintenance scheduling "
+        "scenario or compare all operational scenarios."
     )
